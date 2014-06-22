@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="griffio.beans" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:include-filter type="annotation" expression="griffio.beans.inject.SystemComponent"/>
+        <context:include-filter type="annotation" expression="griffio.beans.inject.SystemUniqueId"/>
+    </context:component-scan>
+
+    <bean id="currentLocalDate" class="org.joda.time.LocalDate" scope="prototype">
+        <constructor-arg value="2014-02-20"/>
+    </bean>
+
+    <bean id="randomLocalDate" class="org.joda.time.LocalDate" scope="prototype" factory-method="parse">
+        <constructor-arg value="2018-03-11"/>
+    </bean>
+
+    <bean id="systemDate" class="org.joda.time.LocalDate" scope="prototype" factory-method="parse">
+        <constructor-arg value="2008-01-21"/>
+    </bean>
+
+</beans>
